@@ -18,16 +18,18 @@ public class Request {
     @PrimaryKey
     private UUID id;
     
-    private Double temperature;
+    private Double temperatura;
+
+    private String ubicacion;
     
-    private String type;
+    private String tipoSensor;
     
     private Instant timestamp;
     
-    public Request(Double temperature, String type) {
+    public Request(Double temperatura, String tipoSensor) {
         this.id = UUID.randomUUID();
-        this.temperature = temperature;
-        this.type = type;
+        this.temperatura = temperatura;
+        this.tipoSensor = tipoSensor;
         this.timestamp = Instant.now();
     }
 }

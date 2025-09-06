@@ -48,29 +48,6 @@ public class RequestController {
         }
     }
     
-    // Endpoint consult logs
-    @GetMapping("/logs")
-    public ResponseEntity<?> getRequestLogs(@RequestParam(defaultValue = "10") int limit) {
-        Map<String, Object> response = new HashMap<>();
-        try {
-            var requests = requestService.getAllRequests();
-            // Limit number of results
-            var limitedRequests = requests.stream()
-                .limit(limit)
-                .toList();
-            
-            response.put("mensaje", "Logs retrieved");
-            response.put("logs", limitedRequests);
-            response.put("total", requests.size());
-            response.put("showing", limitedRequests.size());
-            
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            response.put("mensaje", "Error retrieving logs");
-            response.put("errors", e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     
     private String analyzeTemperature(Double temperature, String type) {
         if (temperature == null) return "UNKNOWN";
