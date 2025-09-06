@@ -1,4 +1,4 @@
-package com.example.supervisioncadenafrio;
+package com.medisuply.supervisioncadenafrio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
