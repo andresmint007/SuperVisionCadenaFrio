@@ -12,4 +12,7 @@ public class RequestDTO {
     
     @NotNull
     private String type;
+
+    @NotNull
+    private String location;
 }

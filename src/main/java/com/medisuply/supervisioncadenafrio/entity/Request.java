@@ -26,10 +26,11 @@ public class Request {
     
     private Instant timestamp;
     
-    public Request(Double temperatura, String tipoSensor) {
+    public Request(Double temperatura, String tipoSensor, String ubicacion) {
         this.id = UUID.randomUUID();
         this.temperatura = temperatura;
         this.tipoSensor = tipoSensor;
         this.timestamp = Instant.now();
+        this.ubicacion =ubicacion ;
     }
 }

@@ -21,11 +21,11 @@ public class RequestService {
      * Sauvegarde une requête pour audit/logging
      */
     public Request saveRequest(RequestDTO requestDTO) {
-        Request request = new Request(requestDTO.getTemperature(), requestDTO.getType());
+        Request request = new Request(requestDTO.getTemperature(), requestDTO.getType(), requestDTO.getLocation());
         Request saved = requestRepository.save(request);
         
-        log.info("Request sauvegardée - ID: {}, Temperature: {}, Type: {}", 
-                saved.getId(), saved.getTemperature(), saved.getType());
+        log.info("Request saved - ID: {}, Temperature: {}, Type: {}",
+                saved.getId(), saved.getTemperatura(), saved.getTipoSensor());
         
         return saved;
     }
