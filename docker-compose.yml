@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    networks:
+      - cadenafrio-net
+    environment:
+      - CASSANDRA_CLUSTER_NAME=SupervisionCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+
+  app:
+    build:
+      context: .
+    container_name: supervision-app
+    ports:
+      - "8085:8085"
+    depends_on:
+      - cassandra
+    environment:
+      - SPRING_CASSANDRA_CONTACT_POINTS=cassandra
+      - SPRING_CASSANDRA_PORT=9042
+      - SPRING_CASSANDRA_LOCAL_DATACENTER=datacenter1
+    networks:
+      - cadenafrio-net
+
+networks:
+  cadenafrio-net:
+    driver: bridge

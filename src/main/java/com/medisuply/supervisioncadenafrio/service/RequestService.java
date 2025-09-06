@@ -29,7 +29,6 @@ public class RequestService {
         
         return saved;
     }
-    
     /**
      * Récupère tous les logs de requêtes
      */
@@ -43,4 +42,6 @@ public class RequestService {
     public Request getRequestById(UUID id) {
         return requestRepository.findById(id).orElse(null);
     }
+
+
 }
