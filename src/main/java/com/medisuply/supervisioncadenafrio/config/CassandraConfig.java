@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
 
+import java.util.List;
+
 @Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
@@ -43,5 +45,11 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Override
     public SchemaAction getSchemaAction() {
         return SchemaAction.CREATE_IF_NOT_EXISTS;
+    }
+
+    @Override
+    protected List<String> getStartupScripts() {
+        return List.of("CREATE KEYSPACE IF NOT EXISTS " + keyspaceName + 
+                      " WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};");
     }
 }
